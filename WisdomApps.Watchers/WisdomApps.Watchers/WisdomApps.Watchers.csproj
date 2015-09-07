@@ -39,11 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Args\NotifyConcurrentQueueChangedEventArgs.cs" />
+    <Compile Include="Enums\FileWatcherNotifyTypes.cs" />
+    <Compile Include="Enums\NotifyConcurrentQueueChangeTypes.cs" />
     <Compile Include="Enums\WatcherNotifyTypes.cs" />
     <Compile Include="Args\PathAvailabilityEventArgs.cs" />
-    <Compile Include="Helpers\Delegates.cs" />
+    <Compile Include="Extensions\EventExtensions.cs" />
     <Compile Include="Helpers\Disposable.cs" />
     <Compile Include="Lists\NetworkFolderMonitorList.cs" />
+    <Compile Include="Lists\ObservableConcurrentQueue.cs" />
     <Compile Include="Lists\QueuedFileWatcherList.cs" />
     <Compile Include="Lists\TimedFileWatcherList.cs" />
     <Compile Include="Options\QueuedFileWatcherOptions.cs" />
@@ -53,11 +57,11 @@
     <Compile Include="Watchers\MultiNetworkFoldersMonitor.cs" />
     <Compile Include="Watchers\NetworkFolderMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Options\NetworkFolderMonitorOptions.cs" />
     <Compile Include="Watchers\QueuedFileWatcher.cs" />
     <Compile Include="Watchers\TimedFileWatcher.cs" />
     <Compile Include="Args\WatcherEventEventArgs.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

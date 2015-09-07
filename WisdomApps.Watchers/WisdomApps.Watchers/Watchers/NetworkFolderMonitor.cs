@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading;
 using WisdomApps.Watchers.Helpers;
+using WisdomApps.Watchers.Extensions;
 
 namespace WisdomApps.Watchers {
 	public class NetworkFolderMonitor : Disposable	{
@@ -8,11 +10,12 @@ namespace WisdomApps.Watchers {
 		private readonly int _interval;
 		private readonly Thread _thread;
 		private bool _running;
-
+		
 		public string DirectoryPath {get; private set;}
 		public bool IsAvailable {get; private set;}
+		public bool EnableRaisingEvents { get; set; }
 
-		public event Delegates.PathAvailabilityChanged PathAvailabilityChanged = delegate { };
+		public event EventHandler<Args.PathAvailabilityEventArgs> PathAvailabilityChanged;
 
 		public NetworkFolderMonitor(string directoryPath, uint Interval) {
 			this._Name = "Network Folder Monitor";
@@ -21,6 +24,9 @@ namespace WisdomApps.Watchers {
 				 IsBackground = true,
 				 Name = this._Name,				 
 			};			
+
+			//Note(Nathan): decide if Events should be enabled by default.
+			//EnableRaisingEvents = true;
 		}
 
 		private void PathMonitor() {
@@ -31,12 +37,13 @@ namespace WisdomApps.Watchers {
 					this.IsAvailable = isPathAvailable;
 					OnPathAvailabilityChange();
 				}
-
 			}
 		}
 
 		private void OnPathAvailabilityChange() {
-			PathAvailabilityChanged(this, new Args.PathAvailabilityEventArgs(this.DirectoryPath, this.IsAvailable));
+			if(EnableRaisingEvents) {
+				PathAvailabilityChanged.Raise(this, new Args.PathAvailabilityEventArgs(this.DirectoryPath, this.IsAvailable));		
+			}			
 		}
 
 		private void Start() {
