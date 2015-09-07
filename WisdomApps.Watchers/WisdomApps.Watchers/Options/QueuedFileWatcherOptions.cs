@@ -8,8 +8,8 @@ using WisdomApps.Watchers.Enums;
 namespace WisdomApps.Watchers.Options
 {
 	public class QueuedFileWatcherOptions {
-		public bool includeSubFolders { get; set; }		
-		public bool ThrowIfWatchDirectoryNotAvaliable { get; set; }		
+		public bool IncludeSubFolders { get; set; }
+		public bool ThrowIfWatchDirectoryNotAvailable { get; set; }		
 		public bool EnableDirectoryCleanupOnError { get; set; }
 		public string WatchPath { get; set; }
 		public string FileFilter { get; set; }
@@ -18,8 +18,8 @@ namespace WisdomApps.Watchers.Options
 		public NotifyFilters NotifyFilter { get; set; }
 
 		public QueuedFileWatcherOptions() {
-			this.includeSubFolders = false;			
-			this.ThrowIfWatchDirectoryNotAvaliable = true;
+			this.IncludeSubFolders = false;			
+			this.ThrowIfWatchDirectoryNotAvailable = true;
 			this.WatchPath = String.Empty;
 			this.FileFilter = String.Empty;			
 			this.BufferBytes = 4;

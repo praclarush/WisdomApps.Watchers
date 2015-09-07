@@ -31,7 +31,7 @@ namespace WisdomApps.Watchers {
 			}
 			private set {
 				if(_currentStatus.Equals(value)) {
-					var prevStatus = CurrentStatus;
+					var prevStatus = this.CurrentStatus;
 					_currentStatus = value;
 
 					WatcherStatusChanged.Raise(this, new StatusChangedEventArgs(prevStatus, this.CurrentStatus));
@@ -55,8 +55,7 @@ namespace WisdomApps.Watchers {
 			this._currentStatus = WatcherStatus.NotStarted;
 
 			_folderMonitor = new FolderMonitor(this.Options.WatchPath, 60);
-			_folderMonitor.PathAvailabilityChanged += OnPathAvailabilityChanged;
-			_folderMonitor.EnableRaisingEvents = true;
+			_folderMonitor.PathAvailabilityChanged += OnPathAvailabilityChanged;			
 
 			//Setup Watcher Events 
 			_watchers.Clear();
@@ -78,12 +77,12 @@ namespace WisdomApps.Watchers {
 			if(this.Options.EventFilters.HasFlag(filter)) {
 				int bufferSize = (int)this.Options.BufferBytes * 1024;
 
-				if(!Directory.Exists(this.Options.WatchPath) && this.Options.ThrowIfWatchDirectoryNotAvaliable) {
+				if(!Directory.Exists(this.Options.WatchPath) && this.Options.ThrowIfWatchDirectoryNotAvailable) {
 					throw new DirectoryNotFoundException("Watch directory was not found", new Exception(this.Options.WatchPath));
 				}
 
 				var watcher = new FileSystemWatcher();
-				watcher.IncludeSubdirectories = this.Options.includeSubFolders;
+				watcher.IncludeSubdirectories = this.Options.IncludeSubFolders;
 				watcher.Path = this.Options.WatchPath;
 				watcher.Filter = this.Options.FileFilter;
 				watcher.NotifyFilter = this.Options.NotifyFilter;
@@ -142,7 +141,7 @@ namespace WisdomApps.Watchers {
 
 		private void OnPathAvailabilityChanged(object sender, PathAvailabilityEventArgs e) {
 			if (!e.PathIsAvailable){
-				if(this.Options.ThrowIfWatchDirectoryNotAvaliable) {
+				if(this.Options.ThrowIfWatchDirectoryNotAvailable) {
 					throw new DirectoryNotFoundException("Watch Directory is No longer Available", new Exception(e.DirectoryPath));
 				}
 				if(_watchersWatching) { Stop();}
@@ -217,7 +216,7 @@ namespace WisdomApps.Watchers {
 		}
 
 		private void CleanDirectory() {
-			var files = System.IO.Directory.EnumerateFiles(this.Options.WatchPath, this.Options.FileFilter, this.Options.includeSubFolders ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
+			var files = System.IO.Directory.EnumerateFiles(this.Options.WatchPath, this.Options.FileFilter, this.Options.IncludeSubFolders ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
 
 			foreach(var file in files) {
 				if(!this.QueuedFiles.All(x => x.FullPath == file && x.ChangeType == QueuedFileChangeType.Created)) {
@@ -229,12 +228,14 @@ namespace WisdomApps.Watchers {
 		public void Start() {
 			_watchers.ForEach(x => x.EnableRaisingEvents = true);
 			_watchersWatching = true;
+			_folderMonitor.EnableRaisingEvents = true;
 			CurrentStatus = WatcherStatus.Started;
 		}
 
 		public void Stop() {
 			_watchers.ForEach(x => x.EnableRaisingEvents = false);
 			_watchersWatching = false;
+			_folderMonitor.EnableRaisingEvents = false;
 			CurrentStatus = WatcherStatus.Stoped;				
 		}
 
