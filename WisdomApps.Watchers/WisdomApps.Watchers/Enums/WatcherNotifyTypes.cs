@@ -19,6 +19,6 @@ namespace WisdomApps.Watchers.Enums
 		Created				= 1 << 8,
 		Deleted				= 1 << 9,
 		FileRenamed			= 1 << 10,
-		All					= 1 << 11
+		Error				= 1 << 11
 	}
 }

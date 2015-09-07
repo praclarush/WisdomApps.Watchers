@@ -40,12 +40,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Args\NotifyConcurrentQueueChangedEventArgs.cs" />
-    <Compile Include="Enums\FileWatcherNotifyTypes.cs" />
+    <Compile Include="Args\StatusChangedEventArgs.cs" />
+    <Compile Include="Enums\QueuedFileChangeType.cs" />
     <Compile Include="Enums\NotifyConcurrentQueueChangeTypes.cs" />
     <Compile Include="Enums\WatcherNotifyTypes.cs" />
     <Compile Include="Args\PathAvailabilityEventArgs.cs" />
+    <Compile Include="Enums\WatcherStatus.cs" />
     <Compile Include="Extensions\EventExtensions.cs" />
     <Compile Include="Helpers\Disposable.cs" />
+    <Compile Include="IO\QueuedFile.cs" />
     <Compile Include="Lists\NetworkFolderMonitorList.cs" />
     <Compile Include="Lists\ObservableConcurrentQueue.cs" />
     <Compile Include="Lists\QueuedFileWatcherList.cs" />
@@ -55,11 +58,11 @@
     <Compile Include="Watchers\MultiDirectoryQueuedFileWatcher.cs" />
     <Compile Include="Watchers\MultiDirectoryTimedFileWatcher.cs" />
     <Compile Include="Watchers\MultiNetworkFoldersMonitor.cs" />
-    <Compile Include="Watchers\NetworkFolderMonitor.cs" />
+    <Compile Include="Watchers\FolderMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Watchers\QueuedFileWatcher.cs" />
     <Compile Include="Watchers\TimedFileWatcher.cs" />
-    <Compile Include="Args\WatcherEventEventArgs.cs" />
+    <Compile Include="Args\QueuedFileEventArgs.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

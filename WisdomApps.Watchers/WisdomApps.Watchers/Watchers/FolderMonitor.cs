@@ -5,7 +5,7 @@ using WisdomApps.Watchers.Helpers;
 using WisdomApps.Watchers.Extensions;
 
 namespace WisdomApps.Watchers {
-	public class NetworkFolderMonitor : Disposable	{
+	public class FolderMonitor : Disposable	{
 		private readonly string _Name;
 		private readonly int _interval;
 		private readonly Thread _thread;
@@ -17,7 +17,7 @@ namespace WisdomApps.Watchers {
 
 		public event EventHandler<Args.PathAvailabilityEventArgs> PathAvailabilityChanged;
 
-		public NetworkFolderMonitor(string directoryPath, uint Interval) {
+		public FolderMonitor(string directoryPath, uint Interval) {
 			this._Name = "Network Folder Monitor";
 			this._interval = ((int)Interval * 1000);
 			this._thread = new Thread(PathMonitor) {
