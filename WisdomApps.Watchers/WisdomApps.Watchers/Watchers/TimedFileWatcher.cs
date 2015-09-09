@@ -22,7 +22,7 @@ namespace WisdomApps.Watchers
 		private FolderMonitor _folderMonitor;
 		private WatcherStatus _currentStatus;
 
-		private string _name = "TimedFileWatcher";
+		private string _name = "Timed File Watcher";
 		private volatile bool _running;
 
 		public ConcurrentQueue<QueuedFile> QueuedFiles { get; private set; }

@@ -49,15 +49,12 @@
     <Compile Include="Extensions\EventExtensions.cs" />
     <Compile Include="Helpers\Disposable.cs" />
     <Compile Include="IO\QueuedFile.cs" />
-    <Compile Include="Lists\NetworkFolderMonitorList.cs" />
     <Compile Include="Lists\ObservableConcurrentQueue.cs" />
-    <Compile Include="Lists\QueuedFileWatcherList.cs" />
-    <Compile Include="Lists\TimedFileWatcherList.cs" />
     <Compile Include="Options\QueuedFileWatcherOptions.cs" />
     <Compile Include="Options\TimedFileWatcherOptions.cs" />
     <Compile Include="Watchers\MultiDirectoryQueuedFileWatcher.cs" />
     <Compile Include="Watchers\MultiDirectoryTimedFileWatcher.cs" />
-    <Compile Include="Watchers\MultiNetworkFoldersMonitor.cs" />
+    <Compile Include="Watchers\MultiFolderMonitor.cs" />
     <Compile Include="Watchers\FolderMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Watchers\QueuedFileWatcher.cs" />

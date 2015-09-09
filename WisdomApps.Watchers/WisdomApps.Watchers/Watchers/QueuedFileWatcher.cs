@@ -20,7 +20,7 @@ namespace WisdomApps.Watchers {
 		private FolderMonitor _folderMonitor;
 		private WatcherStatus _currentStatus;
 
-		private string _name = "QueuedFileWatcher";		
+		private string _name = "Queued File Watcher";		
 		private bool _watchersWatching; 
 
 		public ConcurrentQueue<QueuedFile> QueuedFiles { get; private set; }
