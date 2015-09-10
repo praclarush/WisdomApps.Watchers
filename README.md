@@ -13,3 +13,8 @@
 * A Multi-Directory Queued File System Watcher (Watchers multiple different directories, that are all passed though the same events)
 * Queued Timed File System Watcher (uses a polling system on a timer)
 * A Multi-Directory Queued Timed File System Watcher (Watchers multiple different directories, that are all passed though the same events)
+
+### Other Things that will be moved from the Library ###
+
+* ObservableConcurrentQueue - A Concurrent Queue that raises events when a item is Enqueued, Dequeued, or Peeked
+* Extensions for Events
