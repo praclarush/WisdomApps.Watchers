@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WisdomApps.Watchers.Args {
-	public class NotifyConcurrentQueueChangedEventArgs {
+	public class NotifyConcurrentQueueChangedEventArgs : EventArgs{
 
 		public Enums.NotifyConcurrentQueueChangeTypes ConcurrentQueueChangeType { get; private set; }
 		

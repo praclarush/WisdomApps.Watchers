@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using WisdomApps.Watchers.Helpers;
 using WisdomApps.Watchers.Extensions;
@@ -17,9 +18,10 @@ namespace WisdomApps.Watchers {
 
 		public event EventHandler<Args.PathAvailabilityEventArgs> PathAvailabilityChanged;
 
-		public FolderMonitor(string directoryPath, uint Interval) {
+		public FolderMonitor(string directoryPath, uint interval) {
 			this._Name = "Network Folder Monitor";
-			this._interval = ((int)Interval * 1000);
+            this.DirectoryPath = directoryPath;
+			this._interval = ((int)interval * 1000);
 			this._thread = new Thread(PathMonitor) {
 				 IsBackground = true,
 				 Name = this._Name,				 
@@ -37,6 +39,8 @@ namespace WisdomApps.Watchers {
 					this.IsAvailable = isPathAvailable;
 					OnPathAvailabilityChange();
 				}
+
+                Thread.Sleep(this._interval);
 			}
 		}
 
@@ -46,12 +50,12 @@ namespace WisdomApps.Watchers {
 			}			
 		}
 
-		private void Start() {
+		public void Start() {
 			this._running = true;
 			this._thread.Start();
 		}
 
-		private void Stop() {
+		public void Stop() {
 			this._running = false;
 			this._thread.Join();
 		}

@@ -6,9 +6,9 @@ namespace WisdomApps.Watchers.Args
 		public bool PathIsAvailable { get; private set; }
 		public string DirectoryPath { get; private set; }
 
-		public PathAvailabilityEventArgs(string DirectoryPath, bool isAvailable) {
+		public PathAvailabilityEventArgs(string directoryPath, bool isAvailable) {
 			this.PathIsAvailable = isAvailable;
-			this.DirectoryPath = DirectoryPath;
+			this.DirectoryPath = directoryPath;
 		}
 	}
 }

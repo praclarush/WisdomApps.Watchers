@@ -1,7 +1,9 @@
-﻿///<copyright file="Disposable.cs" company="Wisdom Applications">
+﻿ #pragma warning disable 1587
+///<copyright file="Disposable.cs" company="Wisdom Applications">
 ///Copyright (c) Wisdom Applications 2015 All Rights Reserved
 ///<author>Nathan Bremmer</author>
 ///</copyright>
+#pragma warning restore 1587
 
 using System;
 

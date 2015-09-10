@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WisdomApps.Watchers.Enums;
+﻿using WisdomApps.Watchers.Enums;
 
 namespace WisdomApps.Watchers.Args
 {
@@ -17,11 +12,7 @@ namespace WisdomApps.Watchers.Args
 
 		public System.IO.FileInfo FileInfo {
 			get {
-				if(_fileInfo == null) {
-					_fileInfo = new System.IO.FileInfo(FullPath);
-				}
-
-				return _fileInfo;
+			    return _fileInfo ?? (_fileInfo = new System.IO.FileInfo(FullPath));
 			}
 		}
 

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WisdomApps.Watchers.Extensions;
 
 namespace WisdomApps.Watchers.Watchers
@@ -19,14 +16,14 @@ namespace WisdomApps.Watchers.Watchers
 			this._monitors = new Dictionary<string, FolderMonitor>();
 		}
 
-		public MultiFolderMonitor(uint Interval, params string[] paths) : this() {
+		public MultiFolderMonitor(uint interval, params string[] paths) : this() {
 			foreach(var path in paths) {
-				this.AddNewMonitor(path, Interval);
+				this.AddNewMonitor(path, interval);
 			}
 		}
 
-		public void AddNewMonitor(string path, uint Interval = 60) {
-			var monitor = new FolderMonitor(path, Interval);
+		public void AddNewMonitor(string path, uint interval = 60) {
+			var monitor = new FolderMonitor(path, interval);
 			AddNewMonitor(monitor);
 		}
 

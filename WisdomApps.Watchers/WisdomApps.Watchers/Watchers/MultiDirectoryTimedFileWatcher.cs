@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Threading;
-using System.Collections.Concurrent;
-using WisdomApps.Watchers.Enums;
 using WisdomApps.Watchers.Args;
 using WisdomApps.Watchers.Extensions;
-using WisdomApps.Watchers.Helpers;
-using WisdomApps.Watchers.Lists;
 using WisdomApps.Watchers.Options;
-using WisdomApps.Watchers.IO;
 
 namespace WisdomApps.Watchers.Watchers
 {
@@ -53,15 +44,15 @@ namespace WisdomApps.Watchers.Watchers
 			}
 		}
 
-		public void RemoveWatcher(string DirectoryPath) {
-			if(this._watchers.ContainsKey(DirectoryPath)) {
-				var watcher = this._watchers[DirectoryPath];
+		public void RemoveWatcher(string directoryPath) {
+			if(this._watchers.ContainsKey(directoryPath)) {
+				var watcher = this._watchers[directoryPath];
 				watcher.Stop();
 				watcher.Error -= OnError;
 				watcher.DiectoryAvalibilityChanged -= OnDiectoryAvalibilityChanged;
 				watcher.FileQueued -= OnFileQueued;
 				watcher.WatcherStatusChanged -= OnWatcherStatusChanged;
-				this._watchers.Remove(DirectoryPath);
+				this._watchers.Remove(directoryPath);
 				watcher.Dispose();
 			}
 		}

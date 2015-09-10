@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WisdomApps.Watchers.Watchers
+﻿namespace WisdomApps.Watchers.Watchers
 {
 	class MultiDirectoryQueuedFileWatcher
 	{

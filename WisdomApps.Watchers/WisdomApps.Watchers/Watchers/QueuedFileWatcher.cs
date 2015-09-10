@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Threading;
 using System.Collections.Concurrent;
 using WisdomApps.Watchers.Enums;
 using WisdomApps.Watchers.Args;
 using WisdomApps.Watchers.Extensions;
 using WisdomApps.Watchers.Helpers;
-using WisdomApps.Watchers.Lists;
 using WisdomApps.Watchers.Options;
 using WisdomApps.Watchers.IO;
 
@@ -52,6 +48,8 @@ namespace WisdomApps.Watchers {
 
 		private void Initialize() {
 			this.QueuedFiles = new ConcurrentQueue<QueuedFile>();
+            this._watchers = new List<FileSystemWatcher>();
+
 			this._currentStatus = WatcherStatus.NotStarted;
 
 			_folderMonitor = new FolderMonitor(this.Options.WatchPath, 60);
@@ -216,7 +214,7 @@ namespace WisdomApps.Watchers {
 		}
 
 		private void CleanDirectory() {
-			var files = System.IO.Directory.EnumerateFiles(this.Options.WatchPath, this.Options.FileFilter, this.Options.IncludeSubFolders ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
+			var files = Directory.EnumerateFiles(this.Options.WatchPath, this.Options.FileFilter, this.Options.IncludeSubFolders ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
 
 			foreach(var file in files) {
 				if(!this.QueuedFiles.All(x => x.FullPath == file && x.ChangeType == QueuedFileChangeType.Created)) {
